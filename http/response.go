@@ -34,7 +34,7 @@ type HttpResponse struct {
 }
 
 func (resp *HttpResponse) Status() int {
-	return resp.Status()
+	return resp.StatusCode
 }
 
 func (resp *HttpResponse) Header(name string) string {
