@@ -1,8 +1,8 @@
 package http
 
 import (
-	"net/http"
 	"github.com/pkg/errors"
+	"net/http"
 )
 
 // abstractions for an http response
@@ -28,9 +28,9 @@ type ResponseSource interface {
 
 // default implementation of `ResponseSource`
 type HttpResponse struct {
-	StatusCode	int
-	Headers 	map[string]string
-	Data 		[]byte
+	StatusCode int
+	Headers    map[string]string
+	Data       []byte
 }
 
 func (resp *HttpResponse) Status() int {
@@ -61,8 +61,7 @@ func (resp *HttpResponse) Write(w http.ResponseWriter) error {
 
 func NewHttpResponse() *HttpResponse {
 	return &HttpResponse{
-		Headers:make(map[string]string),
-		Data:make([]byte, 0),
+		Headers: make(map[string]string),
+		Data:    make([]byte, 0),
 	}
 }
-
