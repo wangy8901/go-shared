@@ -1,10 +1,10 @@
 package http
 
 import (
-	"net/http"
-	"io/ioutil"
-	"github.com/pkg/errors"
 	"context"
+	"github.com/pkg/errors"
+	"io/ioutil"
+	"net/http"
 )
 
 // abstractions of an http request
@@ -61,8 +61,8 @@ var (
 // implementation of `RequestSource` that wraps inside
 // a `*http.Request`
 type defaultRequestSource struct {
-	req		*http.Request
-	extractFunc	ExtractBindParamFunc
+	req         *http.Request
+	extractFunc ExtractBindParamFunc
 }
 
 func (rs *defaultRequestSource) Uri() string {
@@ -104,5 +104,5 @@ func (rs *defaultRequestSource) Request() interface{} {
 }
 
 func NewDefaultRequestSource(req *http.Request, bindParamFunc ExtractBindParamFunc) RequestSource {
-	return &defaultRequestSource{req:req, extractFunc:bindParamFunc}
+	return &defaultRequestSource{req: req, extractFunc: bindParamFunc}
 }

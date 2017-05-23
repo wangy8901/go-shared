@@ -29,7 +29,7 @@ type EndpointFilter func(next RequestHandler) ResponseSource
 // Adds panic recovery capabilities to handler
 func AddPanicRecovery(handler RequestHandler, recoverFunc func(r interface{}) ResponseSource) RequestHandler {
 	return func(req RequestSource) (resp ResponseSource) {
-		defer func(){
+		defer func() {
 			if r := recover(); r != nil {
 				resp = recoverFunc(r)
 			}
