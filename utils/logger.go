@@ -3,6 +3,7 @@ package utils
 import (
 	"fmt"
 	"log"
+	"github.com/sirupsen/logrus"
 )
 
 // An interface that accepts anything that could be logged.
@@ -11,7 +12,7 @@ type Logger interface {
 	Debug(text string, args ...interface{})
 	Error(text string, args ...interface{})
 	Fatal(text string, args ...interface{})
-	Trace(text string, args ...interface{})
+	Warn(text string, args ...interface{})
 	// Method to accept a custom severity level
 	Custom(level, text string, args ...interface{})
 }
@@ -35,8 +36,8 @@ func (l defaultLogger) Fatal(text string, args ...interface{}) {
 	log.Panicf("[FATAL] %s\n", fmt.Sprintf(text, args...))
 }
 
-func (l defaultLogger) Trace(text string, args ...interface{}) {
-	log.Printf("[TRACE] %s\n", fmt.Sprintf(text, args...))
+func (l defaultLogger) Warn(text string, args ...interface{}) {
+	log.Printf("[WARN] %s\n", fmt.Sprintf(text, args...))
 }
 
 func (l defaultLogger) Custom(level, text string, args ...interface{}) {
@@ -45,4 +46,41 @@ func (l defaultLogger) Custom(level, text string, args ...interface{}) {
 
 func NewDefaultLogger() Logger {
 	return defaultLogger{}
+}
+
+// Logrus logger
+func NewLogrusLogger() Logger {
+	return &logrusLogger{logger:logrus.New()}
+}
+
+func NewCustomLogrusLogger(logrus *logrus.Logger) Logger {
+	return &logrusLogger{logger:logrus}
+}
+
+type logrusLogger struct {
+	logger *logrus.Logger
+}
+
+func (l *logrusLogger) Info(text string, args ...interface{}) {
+	l.logger.Infof(text, args...)
+}
+
+func (l *logrusLogger) Debug(text string, args ...interface{}) {
+	l.logger.Debugf(text, args...)
+}
+
+func (l *logrusLogger) Error(text string, args ...interface{}) {
+	l.logger.Errorf(text, args...)
+}
+
+func (l *logrusLogger) Fatal(text string, args ...interface{}) {
+	l.logger.Fatalf(text, args...)
+}
+
+func (l *logrusLogger) Warn(text string, args ...interface{}) {
+	l.logger.Warnf(text, args...)
+}
+
+func (l *logrusLogger) Custom(level, text string, args ...interface{}) {
+	l.logger.Printf(fmt.Sprintf("[%s] %s", level, text), args...)
 }
