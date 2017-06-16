@@ -1,10 +1,16 @@
-hash: e6e69b36197018ecbba4ab476a33c4245f71e7e72b84c10383a8e135428dcbcf
-updated: 2017-06-12T19:03:26.011995125-04:00
+hash: ef323b7c9a63a02083b9e4eea76db5f85bf50ec62c6422f83f1d8a01d426f6e5
+updated: 2017-06-15T23:33:07.093286414-04:00
 imports:
 - name: github.com/pkg/errors
   version: 645ef00459ed84a119197bfb8d8205042c6df63d
-- name: github.com/sirupsen/logrus
-  version: 202f25545ea4cf9b191ff7f846df5d87c9382c2b
+- name: github.com/Sirupsen/logrus
+  version: a437dfd2463eaedbec3dfe443e477d3b0a810b3f
+  repo: https://github.com/sirupsen/logrus.git
+  vcs: git
+- name: golang.org/x/sys
+  version: fb4cac33e3196ff7f507ab9b2d2a44b0142f5b5a
+  subpackages:
+  - unix
 testImports:
 - name: github.com/davecgh/go-spew
   version: 6d212800a42e8ab5c146b8ace3490ee17e5225f9

@@ -3,7 +3,7 @@ package utils
 import (
 	"fmt"
 	"log"
-	"github.com/sirupsen/logrus"
+	"github.com/Sirupsen/logrus"
 )
 
 // An interface that accepts anything that could be logged.

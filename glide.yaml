@@ -1,7 +1,9 @@
 package: github.com/elvsn/go-shared
 import:
-- package: github.com/sirupsen/logrus
-  version: ~1.0.0
+- package: github.com/Sirupsen/logrus
+  version: a437dfd2463eaedbec3dfe443e477d3b0a810b3f
+  vcs: git
+  repo: https://github.com/sirupsen/logrus.git
 - package: github.com/pkg/errors
   version: ~0.8.0
 testImport:
